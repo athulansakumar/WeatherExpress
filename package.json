@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha **/*.test.js *.test.js",
-    "start": "node server.js",
-    "deploy": "pm2 start server.js -i 0",
-    "test-watch": "nodemon --exec mocha **/*.test.js *.test.js",
-    "watch": "nodemon server.js",
-    "debug": "nodemon --inspect server.js",
+    "test": "mocha --exit server/**/*.test.js server/**/**/*.test.js",
+    "start": "node server/server.js",
+    "deploy": "pm2 start server/server.js -i 0",
+    "test-watch": "nodemon --exec npm test",
+    "watch": "nodemon server/server.js",
+    "debug": "nodemon --inspect server/server.js",
     "db": "mongod --dbpath /var/mongodb"
   },
   "author": "Athul Ansakumar",
@@ -21,12 +21,14 @@
     "hbs": "^4.0.1",
     "lodash": "^4.17.10",
     "mongodb": "^3.0.7",
+    "mongoose": "^5.0.17",
     "properties-reader": "0.0.16",
     "winston": "^2.4.2",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "expect": "^1.20.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^5.1.1",
     "rewire": "^4.0.1",
     "supertest": "^3.0.0"

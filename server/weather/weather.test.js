@@ -1,18 +1,13 @@
-const expect = require('expect');
+const {expect} = require('chai');
 
 const weather = require('./weather');
 
 describe('Weather',function() {
   this.timeout(15000);
   it('should fetch longitude, latitude for address', (done) => {
-
       weather.geocodeAddress('nettoor,kerala').then((data) => {
-        try {
-          expect(data).toExist().toIncludeKeys(['address','lattitude','longitude']);
-          done();
-        } catch (e) {
-          done(e);
-        }
+        expect(data).to.have.all.keys('address','lattitude','longitude');
+        done();
       }).catch((err) => {
         done(new Error(err));
       });
@@ -26,7 +21,7 @@ describe('Weather',function() {
     };
     weather.getWeatherInfo(location).then((data) => {
       try {
-        expect(data).toExist().toIncludeKeys(['address','summary','temperature']);
+        expect(data).to.have.all.keys('address','summary','temperature');
         done();
       } catch (e) {
         done(e);

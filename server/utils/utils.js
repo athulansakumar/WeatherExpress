@@ -1,12 +1,12 @@
 const yargs = require('yargs');
 const logger = require('winston');
 const PropertiesReader  = require('properties-reader');
-const properties = PropertiesReader(`${__dirname}/../system.properties`);
+const properties = PropertiesReader(`${__dirname}/../config/system.properties`);
 
 logger.configure({
     level:'debug',
     transports: [
-      new (logger.transports.File)({ filename: 'applogs.log' })
+      new (logger.transports.File)({ filename: `${__dirname}/../../applogs.log` })
     ]
 });
 
